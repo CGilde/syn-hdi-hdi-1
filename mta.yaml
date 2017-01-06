@@ -1,0 +1,31 @@
+_schema-version: '2.0'
+ID: syn-hdi-hdi-1
+version: 0.0.1
+
+modules:
+  - name: db
+    type: hdb
+    path: db
+    requires:                                        # db module needs:
+      - name: hdi-container                          # ...where synonyms are created
+        properties:
+          TARGET_CONTAINER: ~{hdi-container-service} # defined at (d1)
+          
+      - name: EPM_XXX-table-grantor                  #...for executing grant statement
+        group: SERVICE_REPLACEMENTS                  #
+        properties: 
+          key: EPM_log-table-grantor                 # log. service used in config-files
+          service: ~{EPM_SNWD-table-grantor-service} # defined at (d2)
+
+resources:
+  - name: hdi-container
+    type: com.sap.xs.hdi-container
+    properties:
+      hdi-container-service: ${service-name}        # (d1) get service into variable
+
+  - name: EPM_XXX-table-grantor
+    type: org.cloudfoundry.existing-service         # service created with xs cups
+    properties:
+      EPM_SNWD-table-grantor-service: ${service-name} # (d2) get service into variable
+    parameters:
+      service-name: GILDE-rj701h19bbwaq5dy-syn-prov-hdi-hdi-container #default: our own DevX gen. container!

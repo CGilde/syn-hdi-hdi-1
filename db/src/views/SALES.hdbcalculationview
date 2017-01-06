@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SALES" applyPrivilegeType="NONE" dataCategory="CUBE" dimensionType="" schemaVersion="3.0" defaultClient="$$client$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" outputViewType="Aggregation" enforceSqlExecution="false" alwaysAggregateResult="true">
+<descriptions defaultDescription="SALES"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SNWD_SO_I">
+    <resourceUri>SNWD_SO_I</resourceUri>
+  </DataSource>
+  <DataSource id="SNWD_SO">
+    <resourceUri>SNWD_SO</resourceUri>
+  </DataSource>
+  <DataSource id="SNWD_PD">
+    <resourceUri>SNWD_PD</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner" cardinality="CN_1">
+    <viewAttributes>
+      <viewAttribute id="SO_ID"><descriptions/><descriptions/><descriptions/>
+        <descriptions defaultDescription="SO_ID"/>
+      </viewAttribute>
+      <viewAttribute id="SO_ITEM_POS"><descriptions/><descriptions/><descriptions/>
+        <descriptions defaultDescription="SO_ITEM_POS"/>
+      </viewAttribute>
+      <viewAttribute id="PRODUCT_GUID"><descriptions/><descriptions/>
+        <descriptions defaultDescription="PRODUCT_GUID"/>
+      </viewAttribute>
+      <viewAttribute id="CURRENCY_CODE"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CURRENCY_CODE"/>
+      </viewAttribute>
+      <viewAttribute id="NET_AMOUNT"><descriptions/><descriptions/><descriptions/>
+        <descriptions defaultDescription="NET_AMOUNT"/>
+      </viewAttribute>
+      <viewAttribute id="JOIN$PARENT_KEY$NODE_KEY" hidden="true"/>
+      <viewAttribute id="JOIN$LOGSYS$LOGSYS" hidden="true"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SNWD_SO_I">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SO_ITEM_POS" source="SO_ITEM_POS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_GUID" source="PRODUCT_GUID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARENT_KEY$NODE_KEY" source="PARENT_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$LOGSYS$LOGSYS" source="LOGSYS"/>
+    </input>
+    <input node="SNWD_SO">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SO_ID" source="SO_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARENT_KEY$NODE_KEY" source="NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$LOGSYS$LOGSYS" source="LOGSYS"/>
+    </input>
+    <joinAttribute name="JOIN$PARENT_KEY$NODE_KEY"/>
+    <joinAttribute name="JOIN$LOGSYS$LOGSYS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="leftOuter" cardinality="CN_1" optimizeJoinColumns="true">
+    <viewAttributes>
+      <viewAttribute id="SO_ID"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SO_ID"/>
+      </viewAttribute>
+      <viewAttribute id="SO_ITEM_POS"><descriptions/><descriptions/>
+        <descriptions defaultDescription="SO_ITEM_POS"/>
+      </viewAttribute>
+      <viewAttribute id="PRODUCT_GUID"><descriptions/><descriptions/>
+        <descriptions defaultDescription="PRODUCT_GUID"/>
+      </viewAttribute>
+      <viewAttribute id="CATEGORY"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CATEGORY"/>
+      </viewAttribute>
+      <viewAttribute id="CURRENCY_CODE"><descriptions/><descriptions/>
+        <descriptions defaultDescription="CURRENCY_CODE"/>
+      </viewAttribute>
+      <viewAttribute id="NET_AMOUNT"><descriptions/><descriptions/>
+        <descriptions defaultDescription="NET_AMOUNT"/>
+      </viewAttribute>
+      <viewAttribute id="JOIN$PRODUCT_GUID$NODE_KEY" hidden="true"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SO_ID" source="SO_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SO_ITEM_POS" source="SO_ITEM_POS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NET_AMOUNT" source="NET_AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRODUCT_GUID$NODE_KEY" source="PRODUCT_GUID"/>
+    </input>
+    <input node="SNWD_PD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_GUID" source="NODE_KEY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRODUCT_GUID$NODE_KEY" source="NODE_KEY"/>
+    </input>
+    <joinAttribute name="JOIN$PRODUCT_GUID$NODE_KEY"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="SO_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SO_ID"/>
+      <keyMapping columnObjectName="Join_2" columnName="SO_ID"/>
+    </attribute>
+    <attribute id="SO_ITEM_POS" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SO_ITEM_POS"/>
+      <keyMapping columnObjectName="Join_2" columnName="SO_ITEM_POS"/>
+    </attribute>
+    <attribute id="PRODUCT_GUID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_GUID"/>
+      <keyMapping columnObjectName="Join_2" columnName="PRODUCT_GUID"/>
+    </attribute>
+    <attribute id="CATEGORY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CATEGORY"/>
+      <keyMapping columnObjectName="Join_2" columnName="CATEGORY"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE"/>
+      <keyMapping columnObjectName="Join_2" columnName="CURRENCY_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="NET_AMOUNT" order="6" semanticType="amount" aggregationType="sum" measureType="amount">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <unitCurrencyAttribute attributeName="CURRENCY_CODE"/>
+      <measureMapping columnObjectName="Join_2" columnName="NET_AMOUNT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="337"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="SNWD_SO_I" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="SNWD_SO" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="12" y="75"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="SNWD_PD" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="443" y="-15"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

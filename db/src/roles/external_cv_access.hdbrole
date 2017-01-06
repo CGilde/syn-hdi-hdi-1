@@ -1,0 +1,12 @@
+{
+  "role": {
+    "name": "external_cv_access",
+    "object_privileges": [
+      {
+        "name":"SALES",
+        "type":"VIEW",
+        "privileges":[ "SELECT" ]
+      }
+    ]
+  }
+}
