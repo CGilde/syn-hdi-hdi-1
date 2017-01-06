@@ -27,5 +27,10 @@ resources:
     type: org.cloudfoundry.existing-service         # service created with xs cups
     properties:
       EPM_SNWD-table-grantor-service: ${service-name} # (d2) get service into variable
+<<<<<<< HEAD
 #    parameters:   # uncomment if you want to connect to a Web IDE generated container
 #      service-name: GILDE-lf10figdtim2i93w-syn-prov-hdi-hdi-container #insert Web-IDE gen. container!
+=======
+    parameters:
+      service-name: GILDE-rj701h19bbwaq5dy-syn-prov-hdi-hdi-container #default: our own DevX gen. container!
+>>>>>>> refs/remotes/origin/master
