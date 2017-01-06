@@ -1,0 +1,38 @@
+{
+  "SNWD_AD": {
+    "target": {
+      "object": "SNWD_AD",
+      "schema.configure"    : "EPM_log-table-grantor/schema"
+    }
+  },
+  "SNWD_BPA": {
+    "target": {
+      "object": "SNWD_BPA",
+      "schema.configure"    : "EPM_log-table-grantor/schema"
+    }
+  },
+  "SNWD_PD": {
+    "target": {
+      "object": "SNWD_PD",
+      "schema.configure"    : "EPM_log-table-grantor/schema"
+    }
+  },
+  "SNWD_PD_CATGOS": {
+    "target": {
+      "object": "SNWD_PD_CATGOS",
+      "schema.configure"    : "EPM_log-table-grantor/schema"
+    }
+  },
+  "SNWD_SO": {
+    "target": {
+      "object": "SNWD_SO",
+      "schema.configure"    : "EPM_log-table-grantor/schema"
+    }
+  },
+  "SNWD_SO_I": {
+    "target": {
+      "object": "SNWD_SO_I",
+      "schema.configure"    : "EPM_log-table-grantor/schema"
+    }
+  }
+}
